@@ -3,9 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dosya</title>
+    <title>Profesyonel Website</title>
+    <link rel="stylesheet" href="styles.css"> <!-- CSS dosyası -->
+    <script src="script.js" defer></script> <!-- JavaScript dosyası -->
 </head>
 <body>
-    R0YC0LD
+    <header>
+        <div class="container">
+            <h1>Şirket Adı</h1>
+            <nav>
+                <ul>
+                    <li><a href="#anasayfa">Ana Sayfa</a></li>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#hizmetler">Hizmetler</a></li>
+                    <li><a href="#referanslar">Referanslar</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="anasayfa" class="bg-image">
+        <div class="container">
+            <h2>Hoş Geldiniz!</h2>
+            <p>Şirketinizin kısa bir tanıtımı.</p>
+            <a href="#hizmetler" class="btn">Hizmetlerimize Göz Atın</a>
+        </div>
+    </section>
+
+    <section id="hakkimizda">
+        <div class="container">
+            <h2>Hakkımızda</h2>
+            <p>Şirketinizin hikayesi veya misyonu hakkında bilgi.</p>
+        </div>
+    </section>
+
+    <section id="hizmetler" class="bg-gray">
+        <div class="container">
+            <h2>Hizmetlerimiz</h2>
+            <div class="hizmet">
+                <h3>Hizmet Adı 1</h3>
+                <p>Hizmetin kısa açıklaması.</p>
+            </div>
+            <div class="hizmet">
+                <h3>Hizmet Adı 2</h3>
+                <p>Hizmetin kısa açıklaması.</p>
+            </div>
+            <!-- Daha fazla hizmet eklenebilir -->
+        </div>
+    </section>
+
+    <section id="referanslar">
+        <div class="container">
+            <h2>Referanslar</h2>
+            <div class="referans">
+                <h3>Referans Adı 1</h3>
+                <p>Referansın kısa açıklaması.</p>
+            </div>
+            <div class="referans">
+                <h3>Referans Adı 2</h3>
+                <p>Referansın kısa açıklaması.</p>
+            </div>
+            <!-- Daha fazla referans eklenebilir -->
+        </div>
+    </section>
+
+    <section id="iletisim" class="bg-gray">
+        <div class="container">
+            <h2>İletişim</h2>
+            <form>
+                <label for="ad">Adınız:</label>
+                <input type="text" id="ad" name="ad" required><br><br>
+                <label for="email">E-posta Adresiniz:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="mesaj">Mesajınız:</label><br>
+                <textarea id="mesaj" name="mesaj" rows="4" required></textarea><br><br>
+                <input type="submit" value="Gönder" class="btn">
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Şirket Adı</p>
+        </div>
+    </footer>
 </body>
 </html>
