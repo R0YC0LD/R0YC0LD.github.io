@@ -86,10 +86,26 @@ window.onload = function() {
 };
 
 // Klavye olaylarını dinle
-document.addEventListener("keydown", function(event) {
-    if (event.key === "ArrowUp") {
-        atomNumarasiniArttir();
-    } else if (event.key === "ArrowDown") {
-        atomNumarasiniAzalt();
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowUp') {
+        // Yukarı ok tuşuna basıldığında atom numarasını arttır
+        arttirAtomNumarasi();
+    } else if (event.key === 'ArrowDown') {
+        // Aşağı ok tuşuna basıldığında atom numarasını azalt
+        azaltAtomNumarasi();
     }
 });
+
+function arttirAtomNumarasi() {
+    if (guncelAtomNumarasi < 50) {
+        guncelAtomNumarasi++;
+        guncelleAtomBilgileri(guncelAtomNumarasi);
+    }
+}
+
+function azaltAtomNumarasi() {
+    if (guncelAtomNumarasi > 1) {
+        guncelAtomNumarasi--;
+        guncelleAtomBilgileri(guncelAtomNumarasi);
+    }
+}
