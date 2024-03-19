@@ -147,3 +147,61 @@ function animate() {
 
 // Render fonksiyonunu çağır
 animate();
+// Elektronların orijinal pozisyonları
+var electronPositions = [];
+
+// Elektronları atom modeline bağlayın
+for (var i = 0; i < electrons.length; i++) {
+    var electron = electrons[i];
+    var angle = (i / electrons.length) * Math.PI * 2; // Elektronun yörüngesindeki açı
+    var radius = 2; // Elektronun yörüngesi çapı
+
+    var x = Math.cos(angle) * radius;
+    var y = 0; // Elektron yüksekliği (yerden)
+    var z = Math.sin(angle) * radius;
+
+    electron.position.set(x, y, z); // Elektronun pozisyonunu ayarlayın
+    scene.add(electron);
+
+    electronPositions.push({ angle: angle }); // Elektronun orijinal açısını saklayın
+}
+
+// Elektronların yörüngesinde dönme animasyonu
+function animateElectrons() {
+    requestAnimationFrame(animateElectrons);
+
+    // Her bir elektronun yörüngesinde dönme
+    for (var i = 0; i < electrons.length; i++) {
+        var electron = electrons[i];
+        var position = electronPositions[i];
+        position.angle += 0.01; // Elektronun her bir karede dönme miktarı
+
+        // Yeni pozisyonu hesapla
+        var x = Math.cos(position.angle) * radius;
+        var z = Math.sin(position.angle) * radius;
+
+        // Elektronun yeni pozisyonunu ayarla
+        electron.position.x = x;
+        electron.position.z = z;
+    }
+
+    renderer.render(scene, camera); // Sahneyi yeniden çizin
+}
+
+// Animasyonu başlat
+animateElectrons();
+// Var olan kodlarınız burada
+
+// Yeni kod parçacığını buraya ekleyin
+// Atom modelini oluştur
+var geometry = new THREE.SphereGeometry(1, 32, 32);
+var material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+var atom = new THREE.Mesh(geometry, material);
+scene.add(atom);
+
+// Elektronları oluştur
+var electronGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+var electronMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+var electrons = [];
+
+// ... Diğer kodlar burada devam eder ...
