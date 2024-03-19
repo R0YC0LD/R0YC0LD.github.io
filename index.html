@@ -3,20 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Süper İnternet Sitesi</title>
+    <title>MyMusic - Listen to Your Favorites</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Hoş Geldiniz!</h1>
+        <div class="container">
+            <h1>MyMusic</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Ana Sayfa</a></li>
+                    <li><a href="#">Keşfet</a></li>
+                    <li><a href="#">Playlistler</a></li>
+                    <li><a href="#">Hakkında</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <p>Merhaba, bu benim süper internet sitem!</p>
+        <div class="container">
+            <div class="spotify-player">
+                <h2>Çalınan Parça</h2>
+                <div class="spotify-track">
+                    <img src="album-cover.jpg" alt="Album Cover">
+                    <div class="spotify-track-info">
+                        <p><strong>Şarkı:</strong> My Awesome Song</p>
+                        <p><strong>Sanatçı:</strong> Müzisyen Adı</p>
+                    </div>
+                </div>
+                <div class="spotify-controls">
+                    <button>Önceki</button>
+                    <button>Çal</button>
+                    <button>Sonraki</button>
+                </div>
+                <div class="spotify-progress">
+                    <div class="spotify-progress-bar" style="width: 50%;"></div>
+                </div>
+                <div class="spotify-time">
+                    <p>0:00</p>
+                    <p>3:30</p>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 Süper İnternet Sitesi</p>
+        <div class="container">
+            <p>&copy; 2024 MyMusic</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
