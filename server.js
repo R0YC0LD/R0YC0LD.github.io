@@ -1,13 +1,9 @@
 const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 3000;
 const multer = require('multer');
 const path = require('path');
 
-// Ana sayfa için GET endpoint'i
-app.get('/', (req, res) => {
-    res.send('Ana sayfa');
-});
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Müzik dosyalarını yüklemek için diskStorage kullanma
 const storage = multer.diskStorage({
@@ -22,17 +18,22 @@ const storage = multer.diskStorage({
 // Müzik dosyalarını yükleme
 const upload = multer({ storage: storage }).single('musicFile');
 
-// Sunucu başlatma
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Ana sayfa için GET endpoint'i
+app.get('/', (req, res) => {
+    res.send('Ana sayfa');
 });
 
 // Müzik dosyası yükleme endpoint'i
 app.post('/upload', (req, res) => {
     upload(req, res, (err) => {
         if (err) {
-            return res.status(500).send(err);
+            return res.status(500).send({ error: 'Dosya yükleme hatası.' });
         }
         res.status(200).send('Dosya yüklendi.');
     });
+});
+
+// Sunucu başlatma
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

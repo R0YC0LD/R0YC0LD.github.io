@@ -13,7 +13,7 @@
       <h1>R0YC0LD Music</h1>
     </div>
     <!-- Arama Çubuğu -->
-    <div class="search-box">
+    <div class="search-box" style="display: flex;">
       <input type="text" placeholder="Search for music..." id="searchInput">
       <button onclick="search()">Search</button>
     </div>
@@ -78,75 +78,76 @@
 
     <!-- Yeni Çıkanlar Listesi -->
     <section class="music-list" id="newReleasesList">
-      <h2>Yeni Çıkanlar</h2>
-      <div class="card">
-        <!-- Music cards will be dynamically generated here -->
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 My Music App</p>
-  </footer>
-
-  <!-- JavaScript ile Arama, Kişiselleştirme, Giriş ve Kayıt Fonksiyonları -->
-  <script>
-    // Arama Fonksiyonu
-    function search() {
-      var input = document.getElementById('searchInput').value;
-      // Arama yapılacak işlemleri burada gerçekleştirin
-      alert('Search query: ' + input);
-    }
-
-    // Kişiselleştirme Fonksiyonu
-    function toggleList(listId) {
-      var list = document.getElementById(listId);
-      list.style.display = document.getElementById('show' + listId.charAt(0).toUpperCase() + listId.slice(1)).checked ? 'block' : 'none';
-    }
-
-    // Giriş Fonksiyonu
-    function loginUser() {
-      var username = document.getElementById('loginUsername').value;
-      var password = document.getElementById('loginPassword').value;
-      // Kullanıcı girişi yapılacak işlemleri burada gerçekleştirin
-      alert('Login with: ' + username + ', ' + password);
-      return false; // Sayfanın yenilenmesini önler
-    }
-
-    // Kayıt Fonksiyonu
-    function registerUser() {
-      var username = document.getElementById('registerUsername').value;
-      var email = document.getElementById('registerEmail').value;
-      var password = document.getElementById('registerPassword').value;
-      // Kullanıcı kaydı yapılacak işlemleri burada gerçekleştirin
-      alert('Register with: ' + username + ', ' + email + ', ' + password);
-      return false; // Sayfanın yenilenmesini önler
-    }
-
-    // Müzik Yükleme Fonksiyonu
-    function uploadMusic() {
-      var formData = new FormData(document.getElementById('uploadForm'));
-
-      fetch('/upload', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to upload music file');
-        }
-        return response.text();
-      })
-      .then(message => {
-        alert(message); // Yükleme başarılı olduğunda kullanıcıya mesaj göster
-      })
-      .catch(error => {
-        console.error('Upload error:', error);
-        alert('Failed to upload music file');
-      });
-
-      return false; // Sayfanın yenilenmesini önler
-    }
-  </script>
-</body>
-</html>
+        <h2>Yeni Çıkanlar</h2>
+        <div class="card">
+          <!-- Music cards will be dynamically generated here -->
+        </div>
+      </section>
+    </main>
+  
+    <footer style="margin-top: 20px;"> <!-- Footer'a margin-top ekledik -->
+      <p>&copy; 2024 My Music App</p>
+    </footer>
+  
+    <!-- JavaScript ile Arama, Kişiselleştirme, Giriş ve Kayıt Fonksiyonları -->
+    <script>
+      // Arama Fonksiyonu
+      function search() {
+        var input = document.getElementById('searchInput').value;
+        // Arama yapılacak işlemleri burada gerçekleştirin
+        alert('Search query: ' + input);
+      }
+  
+      // Kişiselleştirme Fonksiyonu
+      function toggleList(listId) {
+        var list = document.getElementById(listId);
+        list.style.display = document.getElementById('show' + listId.charAt(0).toUpperCase() + listId.slice(1)).checked ? 'block' : 'none';
+      }
+  
+      // Giriş Fonksiyonu
+      function loginUser() {
+        var username = document.getElementById('loginUsername').value;
+        var password = document.getElementById('loginPassword').value;
+        // Kullanıcı girişi yapılacak işlemleri burada gerçekleştirin
+        alert('Login with: ' + username + ', ' + password);
+        return false; // Sayfanın yenilenmesini önler
+      }
+  
+      // Kayıt Fonksiyonu
+      function registerUser() {
+        var username = document.getElementById('registerUsername').value;
+        var email = document.getElementById('registerEmail').value;
+        var password = document.getElementById('registerPassword').value;
+        // Kullanıcı kaydı yapılacak işlemleri burada gerçekleştirin
+        alert('Register with: ' + username + ', ' + email + ', ' + password);
+        return false; // Sayfanın yenilenmesini önler
+      }
+  
+      // Müzik Yükleme Fonksiyonu
+      function uploadMusic() {
+        var formData = new FormData(document.getElementById('uploadForm'));
+  
+        fetch('/upload', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to upload music file');
+          }
+          return response.text();
+        })
+        .then(message => {
+          alert(message); // Yükleme başarılı olduğunda kullanıcıya mesaj göster
+        })
+        .catch(error => {
+          console.error('Upload error:', error);
+          alert('Failed to upload music file');
+        });
+  
+        return false; // Sayfanın yenilenmesini önler
+      }
+    </script>
+  </body>
+  </html>
+  

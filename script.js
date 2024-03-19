@@ -1,9 +1,9 @@
 // Müzik Yükleme Fonksiyonu
 document.getElementById('uploadForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Formun varsayılan davranışını engelle
-  
+
     var formData = new FormData(this); // Form verilerini FormData nesnesine aktar
-  
+
     fetch('/upload', {
       method: 'POST',
       body: formData
@@ -21,20 +21,24 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
       console.error('Upload error:', error);
       alert('Failed to upload music file');
     });
-  });
-  
-  // Arama Fonksiyonu
-  function search() {
-      var input = document.getElementById('searchInput').value;
-      // Arama yapılacak işlemleri burada gerçekleştirin
-      alert('Search query: ' + input);
-  }
-    
-  // Kişiselleştirme Fonksiyonu
-  function toggleList(listId) {
-      var list = document.getElementById(listId);
-      list.style.display = document.getElementById('show' + listId.charAt(0).toUpperCase() + listId.slice(1)).checked ? 'block' : 'none';
-  }
+});
+
+// JavaScript ile Arama ve Kişiselleştirme Fonksiyonları
+document.addEventListener('DOMContentLoaded', function() {
+    // Arama Fonksiyonu
+    document.getElementById('searchButton').addEventListener('click', function() {
+        search();
+    });
+
+    // Kişiselleştirme Fonksiyonları
+    var checkboxes = document.querySelectorAll('.personalization-options input[type="checkbox"]');
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            toggleList(this.id.slice(4));
+        });
+    });
+});
+
     
   // Giriş Fonksiyonu
   function loginUser() {
