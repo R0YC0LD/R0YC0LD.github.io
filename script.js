@@ -1,80 +1,110 @@
-// Şarkı verilerini temsil eden bir dizi
-var songs = [
+// Spotify benzeri bir müzik oynatıcı uygulaması için JavaScript kodları
+
+// Örnek müzik verisi
+const songs = [
     {
-        title: "My Awesome Song",
-        artist: "Müzisyen Adı",
-        duration: "3:30",
-        cover: "album-cover.jpg",
-        file: "my-awesome-song.mp3"
+        title: "Şarkı 1",
+        artist: "Sanatçı 1",
+        cover: "song1.jpg",
+        audio: "song1.mp3",
+        duration: "3:45"
     },
-    // Diğer şarkılar buraya eklenebilir
+    {
+        title: "Şarkı 2",
+        artist: "Sanatçı 2",
+        cover: "song2.jpg",
+        audio: "song2.mp3",
+        duration: "4:10"
+    },
+    {
+        title: "Şarkı 3",
+        artist: "Sanatçı 3",
+        cover: "song3.jpg",
+        audio: "song3.mp3",
+        duration: "3:30"
+    }
 ];
 
-var currentSongIndex = 0; // Şu anda çalınan şarkının dizindeki indeksi
-var audio = new Audio(); // Yeni bir ses öğesi oluştur
+let currentSongIndex = 0;
+let isPlaying = false;
+let progressInterval;
 
-// Müzik çalıcı öğelerini seç
-var playButton = document.querySelector('.spotify-controls button:nth-child(2)');
-var previousButton = document.querySelector('.spotify-controls button:nth-child(1)');
-var nextButton = document.querySelector('.spotify-controls button:nth-child(3)');
-var progressBar = document.querySelector('.spotify-progress-bar');
+const audio = new Audio();
+audio.src = songs[currentSongIndex].audio;
 
-// Şarkıyı başlatan işlev
-function playSong() {
-    var song = songs[currentSongIndex];
-    audio.src = song.file;
-    audio.play();
-    updateCurrentlyPlaying();
-}
+// Müzik çaları güncelle
+function updatePlayer() {
+    const songTitle = document.getElementById("song-title");
+    const songArtist = document.getElementById("song-artist");
+    const albumCover = document.getElementById("album-cover");
+    const progressBar = document.getElementById("progress-bar");
+    const currentTime = document.getElementById("current-time");
+    const totalTime = document.getElementById("total-time");
 
-// Şu anda çalınan şarkının bilgilerini güncelleyen işlev
-function updateCurrentlyPlaying() {
-    var song = songs[currentSongIndex];
-    document.querySelector('.spotify-track img').src = song.cover;
-    document.querySelector('.spotify-track-info p:first-child').textContent = "Şarkı: " + song.title;
-    document.querySelector('.spotify-track-info p:last-child').textContent = "Sanatçı: " + song.artist;
-}
+    songTitle.textContent = songs[currentSongIndex].title;
+    songArtist.textContent = songs[currentSongIndex].artist;
+    albumCover.src = songs[currentSongIndex].cover;
+    totalTime.textContent = songs[currentSongIndex].duration;
 
-// Bir sonraki şarkıya geçen işlev
-function nextSong() {
-    currentSongIndex++;
-    if (currentSongIndex >= songs.length) {
-        currentSongIndex = 0; // Eğer şarkılar bitmişse, ilk şarkıya geri dön
-    }
-    playSong();
-}
-
-// Bir önceki şarkıya geçen işlev
-function previousSong() {
-    currentSongIndex--;
-    if (currentSongIndex < 0) {
-        currentSongIndex = songs.length - 1; // Eğer ilk şarkıdaysak, son şarkıya git
-    }
-    playSong();
-}
-
-// Müzik çalıcı kontrol düğmelerine tıklanınca işlevlerin bağlanması
-playButton.addEventListener('click', function() {
-    if (audio.paused) {
-        playSong();
-        playButton.textContent = "Durdur";
+    if (isPlaying) {
+        audio.play();
+        progressInterval = setInterval(updateProgress, 1000);
     } else {
         audio.pause();
-        playButton.textContent = "Çal";
+        clearInterval(progressInterval);
     }
+}
+
+// Şarkı ilerlemesi ve zamanı güncelle
+function updateProgress() {
+    const progressBar = document.getElementById("progress-bar");
+    const currentTime = document.getElementById("current-time");
+    const duration = audio.duration;
+    const currentTimeValue = audio.currentTime;
+
+    progressBar.value = (currentTimeValue / duration) * 100;
+    currentTime.textContent = formatTime(currentTimeValue);
+}
+
+// Süreyi biçimlendir
+function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+// Şarkıyı çal
+function playSong() {
+    isPlaying = true;
+    updatePlayer();
+}
+
+// Şarkıyı duraklat
+function pauseSong() {
+    isPlaying = false;
+    updatePlayer();
+}
+
+// Önceki şarkıya geç
+function previousSong() {
+    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    updatePlayer();
+}
+
+// Sonraki şarkıya geç
+function nextSong() {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    updatePlayer();
+}
+
+// Başlangıçta müzik çaları güncelle
+updatePlayer();
+
+// Olay dinleyicileri ekle
+document.getElementById("play-pause-button").addEventListener("click", () => {
+    isPlaying ? pauseSong() : playSong();
 });
 
-previousButton.addEventListener('click', previousSong);
-nextButton.addEventListener('click', nextSong);
+document.getElementById("previous-button").addEventListener("click", previousSong);
 
-// Ses ilerlemesini güncelleyen işlev
-audio.addEventListener('timeupdate', function() {
-    var progress = (audio.currentTime / audio.duration) * 100;
-    progressBar.style.width = progress + "%";
-});
-
-// Şarkı bittiğinde bir sonraki şarkıya geç
-audio.addEventListener('ended', nextSong);
-
-// Başlangıçta ilk şarkıyı oynat
-playSong();
+document.getElementById("next-button").addEventListener("click", nextSong);
