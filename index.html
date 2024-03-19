@@ -19,7 +19,20 @@
         <p>Nötron Sayısı: <span id="nötron-sayisi"></span></p>
     </div>
 
-    <!-- JavaScript dosyasını buraya ekleyin -->
-    <script src="script.js"></script>
+<!-- Atom bilgilerini güncelleyen JavaScript fonksiyonu -->
+<script>
+    function guncelleAtomBilgileri(atom) {
+        document.getElementById('atom-simbol').innerHTML = atom.sembol;
+        document.getElementById('atom-ad').innerHTML = '(' + atom.ad + ')';
+        document.getElementById('atom-numarasi').innerHTML = atom.atomNumarasi;
+        document.getElementById('elektron-sayisi').innerHTML = atom.elektronSayisi;
+        document.getElementById('proton-sayisi').innerHTML = atom.protonSayisi;
+        document.getElementById('nötron-sayisi').innerHTML = atom.neutronSayisi;
+    }
+</script>
+
+<!-- JavaScript dosyasını buraya ekleyin -->
+<script src="script.js"></script>
+
 </body>
 </html>
