@@ -8,29 +8,49 @@
 </head>
 <body>
     <header>
-        <h1>MyMusic</h1>
+        <div class="container">
+            <h1>MyMusic</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Ana Sayfa</a></li>
+                    <li><a href="#">Keşfet</a></li>
+                    <li><a href="#">Playlistler</a></li>
+                    <li><a href="#">Hakkında</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <div class="spotify-player">
-            <img src="album-cover.jpg" alt="Album Cover">
-            <div class="song-info">
-                <h2>My Awesome Song</h2>
-                <p>Müzisyen Adı</p>
-            </div>
-            <div class="controls">
-                <button id="play-pause-button">Play</button>
-                <button id="previous-button">Previous</button>
-                <button id="next-button">Next</button>
-            </div>
-            <div class="progress-bar-container">
-                <div class="progress-bar"></div>
+        <div class="container">
+            <div class="spotify-player">
+                <img src="album-cover.jpg" alt="Album Cover">
+                <div class="song-info">
+                    <h2>My Awesome Song</h2>
+                    <p>Müzisyen Adı</p>
+                </div>
+                <div class="controls">
+                    <button id="previous-button">
+                        <img src="previous-icon.png" alt="Previous">
+                    </button>
+                    <button id="play-pause-button">
+                        <img src="play-icon.png" alt="Play">
+                    </button>
+                    <button id="next-button">
+                        <img src="next-icon.png" alt="Next">
+                    </button>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 MyMusic</p>
+        <div class="container">
+            <p>&copy; 2024 MyMusic</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
