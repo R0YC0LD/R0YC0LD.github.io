@@ -1,16 +1,34 @@
-// Öncelikle, değiştirilecek metinleri bir diziye yerleştirelim
-var texts = ["Metin 1", "Metin 2", "Metin 3"];
-var currentIndex = 0; // Başlangıçta ilk metni göstermek için indeks
+var atoms = [
+    { name: "Hidrojen", symbol: "H", number: 1, electronCount: 1, neutronCount: 0, protonCount: 1 },
+    // Diğer atomları buraya ekleyebilirsiniz
+];
 
-// Değişecek olan div elementini seçin
-var changingText = document.getElementById("changingText");
+var currentIndex = 0;
+var atomModel = document.getElementById("atomModel");
+var atomName = document.getElementById("atomName");
+var atomNumber = document.getElementById("atomNumber");
+var electronCount = document.getElementById("electronCount");
+var neutronCount = document.getElementById("neutronCount");
+var protonCount = document.getElementById("protonCount");
 
-// Yukarı ok tuşuna basıldığında metni değiştirecek bir olay dinleyici ekleyin
+function updateAtomInfo(index) {
+    var atom = atoms[index];
+    atomModel.textContent = atom.symbol;
+    atomName.textContent = atom.name;
+    atomNumber.textContent = atom.number;
+    electronCount.textContent = atom.electronCount;
+    neutronCount.textContent = atom.neutronCount;
+    protonCount.textContent = atom.protonCount;
+}
+
+updateAtomInfo(currentIndex);
+
 document.addEventListener("keydown", function(event) {
     if (event.key === "ArrowUp") {
-        // Metin dizisinde bir sonraki metne geçin
-        currentIndex = (currentIndex + 1) % texts.length;
-        // Değişen metni güncelleyin
-        changingText.textContent = texts[currentIndex];
+        currentIndex = (currentIndex + 1) % atoms.length;
+        updateAtomInfo(currentIndex);
+    } else if (event.key === "ArrowDown") {
+        currentIndex = (currentIndex - 1 + atoms.length) % atoms.length;
+        updateAtomInfo(currentIndex);
     }
 });

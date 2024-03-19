@@ -3,10 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atom Sitesi</title>
+    <title>Atom Modeli</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="changingText">Bu metin değişecek.</div>
+    <div id="atomPanel">
+        <div id="atomModel"></div>
+        <div id="atomInfo">
+            <h2 id="atomName">Hidrojen</h2>
+            <p>Atom Numarası: <span id="atomNumber">1</span></p>
+            <p>Elektron Sayısı: <span id="electronCount">1</span></p>
+            <p>Nötron Sayısı: <span id="neutronCount">0</span></p>
+            <p>Proton Sayısı: <span id="protonCount">1</span></p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
