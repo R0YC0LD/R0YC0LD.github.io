@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyMusic</title>
+    <title>MyMusic - Listen to Your Favorites</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,24 +24,25 @@
     <main>
         <div class="container">
             <div class="spotify-player">
-                <img src="album-cover.jpg" alt="Album Cover">
-                <div class="song-info">
-                    <h2>My Awesome Song</h2>
-                    <p>Müzisyen Adı</p>
+                <h2>Çalınan Parça</h2>
+                <div class="spotify-track">
+                    <img src="album-cover.jpg" alt="Album Cover">
+                    <div class="spotify-track-info">
+                        <p><strong>Şarkı:</strong> My Awesome Song</p>
+                        <p><strong>Sanatçı:</strong> Müzisyen Adı</p>
+                    </div>
                 </div>
-                <div class="controls">
-                    <button id="previous-button">
-                        <img src="previous-icon.png" alt="Previous">
-                    </button>
-                    <button id="play-pause-button">
-                        <img src="play-icon.png" alt="Play">
-                    </button>
-                    <button id="next-button">
-                        <img src="next-icon.png" alt="Next">
-                    </button>
+                <div class="spotify-controls">
+                    <button>Önceki</button>
+                    <button>Çal</button>
+                    <button>Sonraki</button>
                 </div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar"></div>
+                <div class="spotify-progress">
+                    <div class="spotify-progress-bar" style="width: 50%;"></div>
+                </div>
+                <div class="spotify-time">
+                    <p>0:00</p>
+                    <p>3:30</p>
                 </div>
             </div>
         </div>
