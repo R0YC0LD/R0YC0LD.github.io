@@ -12,12 +12,13 @@ app.get('/', (req, res) => {
 // Müzik dosyalarını yüklemek için diskStorage kullanma
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/music');
+        cb(null, 'public/music'); // Dosyaların yükleneceği dizini 'public/music' olarak belirtin
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
+
 
 // Müzik dosyalarını yükleme
 const upload = multer({ storage: storage }).single('musicFile');
