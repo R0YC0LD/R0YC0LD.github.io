@@ -84,25 +84,34 @@ var atoms = [
     { name: "Berkelium", symbol: "Bk", number: 97, electronCount: 97, neutronCount: 150, protonCount: 97 },
     { name: "Californium", symbol: "Cf", number: 98, electronCount: 98, neutronCount: 153, protonCount: 98 },
     { name: "Einsteinium", symbol: "Es", number: 99, electronCount: 99, neutronCount: 153, protonCount: 99 },
-    { name: "Fermium", symbol: "Fm", number: 100, electronCount: 100, neutronCount: 157, protonCount: 100 }// Diğer atomları buraya ekleyebilirsiniz
+    { name: "Fermium", symbol: "Fm", number: 100, electronCount: 100, neutronCount: 157, protonCount: 100 }
+    // Diğer atomları buraya ekleyebilirsiniz
 ];
 
 var currentIndex = 0;
 var atomInfo = document.getElementById("atomInfo");
 
-function updateAtomInfo(index) {
+function displayAtom(index) {
     var atom = atoms[index];
-    atomInfo.innerHTML = `
-        <div>Atom Modeli: ${atom.symbol}</div>
-        <div>Atom Adı: ${atom.name}</div>
-        <div>Atom Numarası: ${atom.number}</div>
-        <div>Elektron Sayısı: ${atom.electronCount}</div>
-        <div>Proton Sayısı: ${atom.protonCount}</div>
-        <div>Nötron Sayısı: ${atom.neutronCount}</div>
-    `;
+    atomInfo.innerHTML = "<h2>" + atom.name + "</h2>" +
+        "<p>Atom Numarası: " + atom.number + "</p>" +
+        "<p>Sembol: " + atom.symbol + "</p>" +
+        "<p>Proton Sayısı: " + atom.protonCount + "</p>" +
+        "<p>Elektron Sayısı: " + atom.electronCount + "</p>" +
+        "<p>Neutron Sayısı: " + atom.neutronCount + "</p>";
 }
 
-updateAtomInfo(currentIndex);
+displayAtom(currentIndex);
+
+document.getElementById("nextAtom").addEventListener("click", function () {
+    currentIndex = (currentIndex + 1) % atoms.length;
+    displayAtom(currentIndex);
+});
+
+document.getElementById("prevAtom").addEventListener("click", function () {
+    currentIndex = (currentIndex - 1 + atoms.length) % atoms.length;
+    displayAtom(currentIndex);
+});
 
 // Üç boyutlu sahne oluştur
 var scene = new THREE.Scene();
@@ -116,36 +125,21 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Atom modelini oluştur
-var geometry = new THREE.SphereGeometry(1, 32, 32);
-var material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-var atom = new THREE.Mesh(geometry, material);
-scene.add(atom);
-
-// Elektronları oluştur
-var electronGeometry = new THREE.SphereGeometry(0.1, 16, 16);
-var electronMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-var electrons = [];
-
-for (var i = 0; i < 10; i++) {
-    var electron = new THREE.Mesh(electronGeometry, electronMaterial);
-    electron.position.set(Math.random() * 4 - 2, Math.random() * 4 - 2, Math.random() * 4 - 2);
-    electrons.push(electron);
-    scene.add(electron);
+// 100 Atom ekleyin
+for (var i = 0; i < 100; i++) {
+    var atomMesh = new THREE.Mesh(geometry, material);
+    atomMesh.position.set(Math.random() * 20 - 10, Math.random() * 20 - 10, Math.random() * 20 - 10);
+    scene.add(atomMesh);
 }
 
 // Render fonksiyonunu tanımla
 function animate() {
     requestAnimationFrame(animate);
 
-    // Atomı döndür
-    atom.rotation.x += 0.01;
-    atom.rotation.y += 0.01;
-
-    // Elektronları çevir
-    electrons.forEach(function (electron) {
-        electron.rotation.x += 0.05;
-        electron.rotation.y += 0.05;
+    // Atomları döndür
+    scene.children.forEach(function (atomMesh) {
+        atomMesh.rotation.x += 0.01;
+        atomMesh.rotation.y += 0.01;
     });
 
     renderer.render(scene, camera);
@@ -153,13 +147,3 @@ function animate() {
 
 // Render fonksiyonunu çağır
 animate();
-
-document.addEventListener("keydown", function(event) {
-    if (event.key === "ArrowUp") {
-        currentIndex = (currentIndex + 1) % atoms.length;
-        updateAtomInfo(currentIndex);
-    } else if (event.key === "ArrowDown") {
-        currentIndex = (currentIndex - 1 + atoms.length) % atoms.length;
-        updateAtomInfo(currentIndex);
-    }
-});

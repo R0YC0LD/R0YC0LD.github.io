@@ -4,28 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atom Modeli</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        #atomInfo {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="atomInfo">
-        <div>Atom Modeli: <span id="atomModel"></span></div>
-        <div>Atom Adı: <span id="atomName"></span></div>
-        <div>Atom Numarası: <span id="atomNumber"></span></div>
-        <div>Elektron Sayısı: <span id="electronCount"></span></div>
-        <div>Proton Sayısı: <span id="protonCount"></span></div>
-        <div>Nötron Sayısı: <span id="neutronCount"></span></div>
+    <div id="atomPanel">
+        <div id="atomModel"> <!-- Değişiklik: atomPanel içine taşındı -->
+            <!-- Atom modeli bilgileri buraya gelecek -->
+        </div>
+        <div id="atomInfo">
+            <!-- Atom bilgileri buraya gelecek -->
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
