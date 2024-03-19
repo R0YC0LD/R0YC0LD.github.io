@@ -1,417 +1,95 @@
-// Atom numarasına göre element bilgisini al
-function elementBilgisiAl(atomNumarası) {
-    // Atom bilgileri
-    const atomlar = [
-        {
-            numara: 1,
-            simbol: 'H',
-            ad: 'Hidrojen',
-            proton: 1,
-            nötron: 0
-        },
-        {
-            numara: 2,
-            simbol: 'He',
-            ad: 'Helyum',
-            proton: 2,
-            nötron: 2
-        },
-        {
-            numara: 3,
-            simbol: 'Li',
-            ad: 'Lityum',
-            proton: 3,
-            nötron: 4
-        },
-        {
-            numara: 4,
-            simbol: 'Be',
-            ad: 'Berilyum',
-            proton: 4,
-            nötron: 5
-        },
-        {
-            numara: 5,
-            simbol: 'B',
-            ad: 'Bor',
-            proton: 5,
-            nötron: 6
-        },
-        {
-            numara: 6,
-            simbol: 'C',
-            ad: 'Karbon',
-            proton: 6,
-            nötron: 6
-        },
-        {
-            numara: 7,
-            simbol: 'N',
-            ad: 'Azot',
-            proton: 7,
-            nötron: 7
-        },
-        {
-            numara: 8,
-            simbol: 'O',
-            ad: 'Oksijen',
-            proton: 8,
-            nötron: 8
-        },
-        {
-            numara: 9,
-            simbol: 'F',
-            ad: 'Flor',
-            proton: 9,
-            nötron: 10
-        },
-        {
-            numara: 10,
-            simbol: 'Ne',
-            ad: 'Neon',
-            proton: 10,
-            nötron: 10
-        },
-        {
-            numara: 11,
-            simbol: 'Na',
-            ad: 'Sodyum',
-            proton: 11,
-            nötron: 12
-        },
-        {
-            numara: 12,
-            simbol: 'Mg',
-            ad: 'Magnezyum',
-            proton: 12,
-            nötron: 12
-        },
-        {
-            numara: 13,
-            simbol: 'Al',
-            ad: 'Alüminyum',
-            proton: 13,
-            nötron: 14
-        },
-        {
-            numara: 14,
-            simbol: 'Si',
-            ad: 'Silisyum',
-            proton: 14,
-            nötron: 14
-        },
-        {
-            numara: 15,
-            simbol: 'P',
-            ad: 'Fosfor',
-            proton: 15,
-            nötron: 16
-        },
-        {
-            numara: 16,
-            simbol: 'S',
-            ad: 'Kükürt',
-            proton: 16,
-            nötron: 16
-        },
-        {
-            numara: 17,
-            simbol: 'Cl',
-            ad: 'Klor',
-            proton: 17,
-            nötron: 18
-        },
-        {
-            numara: 18,
-            simbol: 'Ar',
-            ad: 'Argon',
-            proton: 18,
-            nötron: 22
-        },
-        {
-            numara: 19,
-            simbol: 'K',
-            ad: 'Potasyum',
-            proton: 19,
-            nötron: 20
-        },
-        {
-            numara: 20,
-            simbol: 'Ca',
-            ad: 'Kalsiyum',
-            proton: 20,
-            nötron: 20
-        },
-        {
-            numara: 21,
-            simbol: 'Sc',
-            ad: 'Skandiyum',
-            proton: 21,
-            nötron: 24
-        },
-        {
-            numara: 22,
-            simbol: 'Ti',
-            ad: 'Titanyum',
-            proton: 22,
-            nötron: 26
-        },
-        {
-            numara: 23,
-            simbol: 'V',
-            ad: 'Vanadyum',
-            proton: 23,
-            nötron: 28
-        },
-        {
-            numara: 24,
-            simbol: 'Cr',
-            ad: 'Krom',
-            proton: 24,
-            nötron: 28
-        },
-        {
-            numara: 25,
-            simbol: 'Mn',
-            ad: 'Manganez',
-            proton: 25,
-            nötron: 30
-        },
-        {
-            numara: 26,
-            simbol: 'Fe',
-            ad: 'Demir',
-            proton: 26,
-            nötron: 30
-        },
-        {
-            numara: 27,
-            simbol: 'Co',
-            ad: 'Kobalt',
-            proton: 27,
-            nötron: 32
-        },
-        {
-            numara: 28,
-            simbol: 'Ni',
-            ad: 'Nikel',
-            proton: 28,
-            nötron: 31
-        },
-        {
-            numara: 29,
-            simbol: 'Cu',
-            ad: 'Bakır',
-            proton: 29,
-            nötron: 35
-        },
-        {
-            numara: 30,
-            simbol: 'Zn',
-            ad: 'Çinko',
-            proton: 30,
-            nötron: 35
-        },
-        {
-            numara: 31,
-            simbol: 'Ga',
-            ad: 'Galyum',
-            proton: 31,
-            nötron: 39
-        },
-        {
-            numara: 32,
-            simbol: 'Ge',
-            ad: 'Germanyum',
-            proton: 32,
-            nötron: 41
-        },
-        {
-            numara: 33,
-            simbol: 'As',
-            ad: 'Arsenik',
-            proton: 33,
-            nötron: 42
-        },
-        {
-            numara: 34,
-            simbol: 'Se',
-            ad: 'Selenyum',
-            proton: 34,
-            nötron: 45
-        },
-        {
-            numara: 35,
-            simbol: 'Br',
-            ad: 'Brom',
-            proton: 35,
-            nötron: 45
-        },
-        {
-            numara: 36,
-            simbol: 'Kr',
-            ad: 'Kripton',
-            proton: 36,
-            nötron: 48
-        },
-        {
-            numara: 37,
-            simbol: 'Rb',
-            ad: 'Rubidyum',
-            proton: 37,
-            nötron: 48
-        },
-        {
-            numara: 38,
-            simbol: 'Sr',
-            ad: 'Stronsiyum',
-            proton: 38,
-            nötron: 50
-        },
-        {
-            numara: 39,
-            simbol: 'Y',
-            ad: 'İtriyum',
-            proton: 39,
-            nötron: 50
-        },
-        {
-            numara: 40,
-            simbol: 'Zr',
-            ad: 'Zirkonyum',
-            proton: 40,
-            nötron: 50
-        },
-        {
-            numara: 41,
-            simbol: 'Nb',
-            ad: 'Niobyum',
-            proton: 41,
-            nötron: 52
-        },
-        {
-            numara: 42,
-            simbol: 'Mo',
-            ad: 'Molibden',
-            proton: 42,
-            nötron: 54
-        },
-        {
-            numara: 43,
-            simbol: 'Tc',
-            ad: 'Teknesyum',
-            proton: 43,
-            nötron: 55
-        },
-        {
-            numara: 44,
-            simbol: 'Ru',
-            ad: 'Rutenyum',
-            proton: 44,
-            nötron: 57
-        },
-        {
-            numara: 45,
-            simbol: 'Rh',
-            ad: 'Rodyum',
-            proton: 45,
-            nötron: 58
-        },
-        {
-            numara: 46,
-            simbol: 'Pd',
-            ad: 'Paladyum',
-            proton: 46,
-            nötron: 60
-        },
-        {
-            numara: 47,
-            simbol: 'Ag',
-            ad: 'Gümüş',
-            proton: 47,
-            nötron: 61
-        },
-        {
-            numara: 48,
-            simbol: 'Cd',
-            ad: 'Kadmiyum',
-            proton: 48,
-            nötron: 64
-        },
-        {
-            numara: 49,
-            simbol: 'In',
-            ad: 'İndiyum',
-            proton: 49,
-            nötron: 66
-        },
-        {
-            numara: 50,
-            simbol: 'Sn',
-            ad: 'Kalay',
-            proton: 50,
-            nötron: 69
-        }
-    ];
+let atomBilgileri = [
+    { atomNumarasi: 1, elektronSayisi: 1, protonSayisi: 1, neutronSayisi: 0, sembol: "H", ad: "Hidrojen" },
+    { atomNumarasi: 2, elektronSayisi: 2, protonSayisi: 2, neutronSayisi: 2, sembol: "He", ad: "Helyum" },
+    { atomNumarasi: 3, elektronSayisi: 3, protonSayisi: 3, neutronSayisi: 4, sembol: "Li", ad: "Lityum" },
+    { atomNumarasi: 4, elektronSayisi: 4, protonSayisi: 4, neutronSayisi: 5, sembol: "Be", ad: "Berilyum" },
+    { atomNumarasi: 5, elektronSayisi: 5, protonSayisi: 5, neutronSayisi: 6, sembol: "B", ad: "Bor" },
+    { atomNumarasi: 6, elektronSayisi: 6, protonSayisi: 6, neutronSayisi: 6, sembol: "C", ad: "Karbon" },
+    { atomNumarasi: 7, elektronSayisi: 7, protonSayisi: 7, neutronSayisi: 7, sembol: "N", ad: "Azot" },
+    { atomNumarasi: 8, elektronSayisi: 8, protonSayisi: 8, neutronSayisi: 8, sembol: "O", ad: "Oksijen" },
+    { atomNumarasi: 9, elektronSayisi: 9, protonSayisi: 9, neutronSayisi: 10, sembol: "F", ad: "Flor" },
+    { atomNumarasi: 10, elektronSayisi: 10, protonSayisi: 10, neutronSayisi: 12, sembol: "Ne", ad: "Neon" },
+    { atomNumarasi: 11, elektronSayisi: 11, protonSayisi: 11, neutronSayisi: 12, sembol: "Na", ad: "Sodyum" },
+    { atomNumarasi: 12, elektronSayisi: 12, protonSayisi: 12, neutronSayisi: 12, sembol: "Mg", ad: "Magnezyum" },
+    { atomNumarasi: 13, elektronSayisi: 13, protonSayisi: 13, neutronSayisi: 14, sembol: "Al", ad: "Alüminyum" },
+    { atomNumarasi: 14, elektronSayisi: 14, protonSayisi: 14, neutronSayisi: 14, sembol: "Si", ad: "Silisyum" },
+    { atomNumarasi: 15, elektronSayisi: 15, protonSayisi: 15, neutronSayisi: 16, sembol: "P", ad: "Fosfor" },
+    { atomNumarasi: 16, elektronSayisi: 16, protonSayisi: 16, neutronSayisi: 16, sembol: "S", ad: "Sülfür" },
+    { atomNumarasi: 17, elektronSayisi: 17, protonSayisi: 17, neutronSayisi: 18, sembol: "Cl", ad: "Klor" },
+    { atomNumarasi: 18, elektronSayisi: 18, protonSayisi: 18, neutronSayisi: 22, sembol: "Ar", ad: "Argon" },
+    { atomNumarasi: 19, elektronSayisi: 19, protonSayisi: 19, neutronSayisi: 20, sembol: "K", ad: "Potasyum" },
+    { atomNumarasi: 20, elektronSayisi: 20, protonSayisi: 20, neutronSayisi: 20, sembol: "Ca", ad: "Kalsiyum" },
+    { atomNumarasi: 21, elektronSayisi: 21, protonSayisi: 21, neutronSayisi: 24, sembol: "Sc", ad: "Skandiyum" },
+    { atomNumarasi: 22, elektronSayisi: 22, protonSayisi: 22, neutronSayisi: 26, sembol: "Ti", ad: "Titanyum" },
+    { atomNumarasi: 23, elektronSayisi: 23, protonSayisi: 23, neutronSayisi: 28, sembol: "V", ad: "Vanadyum" },
+    { atomNumarasi: 24, elektronSayisi: 24, protonSayisi: 24, neutronSayisi: 28, sembol: "Cr", ad: "Krom" },
+    { atomNumarasi: 25, elektronSayisi: 25, protonSayisi: 25, neutronSayisi: 30, sembol: "Mn", ad: "Manganez" },
+    { atomNumarasi: 26, elektronSayisi: 26, protonSayisi: 26, neutronSayisi: 30, sembol: "Fe", ad: "Demir" },
+    { atomNumarasi: 27, elektronSayisi: 27, protonSayisi: 27, neutronSayisi: 32, sembol: "Co", ad: "Kobalt" },
+    { atomNumarasi: 28, elektronSayisi: 28, protonSayisi: 28, neutronSayisi: 31, sembol: "Ni", ad: "Nikel" },
+    { atomNumarasi: 29, elektronSayisi: 29, protonSayisi: 29, neutronSayisi: 35, sembol: "Cu", ad: "Bakır" },
+    { atomNumarasi: 30, elektronSayisi: 30, protonSayisi: 30, neutronSayisi: 35, sembol: "Zn", ad: "Çinko" },
+    { atomNumarasi: 31, elektronSayisi: 31, protonSayisi: 31, neutronSayisi: 38, sembol: "Ga", ad: "Galyum" },
+    { atomNumarasi: 32, elektronSayisi: 32, protonSayisi: 32, neutronSayisi: 41, sembol: "Ge", ad: "Germaniyum" },
+    { atomNumarasi: 33, elektronSayisi: 33, protonSayisi: 33, neutronSayisi: 42, sembol: "As", ad: "Arsenik" },
+    { atomNumarasi: 34, elektronSayisi: 34, protonSayisi: 34, neutronSayisi: 45, sembol: "Se", ad: "Selenyum" },
+    { atomNumarasi: 35, elektronSayisi: 35, protonSayisi: 35, neutronSayisi: 45, sembol: "Br", ad: "Brom" },
+    { atomNumarasi: 36, elektronSayisi: 36, protonSayisi: 36, neutronSayisi: 48, sembol: "Kr", ad: "Kripton" },
+    { atomNumarasi: 37, elektronSayisi: 37, protonSayisi: 37, neutronSayisi: 48, sembol: "Rb", ad: "Rubidyum" },
+    { atomNumarasi: 38, elektronSayisi: 38, protonSayisi: 38, neutronSayisi: 50, sembol: "Sr", ad: "Stronsiyum" },
+    { atomNumarasi: 39, elektronSayisi: 39, protonSayisi: 39, neutronSayisi: 50, sembol: "Y", ad: "Yttrium" },
+    { atomNumarasi: 40, elektronSayisi: 40, protonSayisi: 40, neutronSayisi: 50, sembol: "Zr", ad: "Zirkonyum" },
+    { atomNumarasi: 41, elektronSayisi: 41, protonSayisi: 41, neutronSayisi: 52, sembol: "Nb", ad: "Niobyum" },
+    { atomNumarasi: 42, elektronSayisi: 42, protonSayisi: 42, neutronSayisi: 54, sembol: "Mo", ad: "Molibden" },
+    { atomNumarasi: 43, elektronSayisi: 43, protonSayisi: 43, neutronSayisi: 56, sembol: "Tc", ad: "Teknesyum" },
+    { atomNumarasi: 44, elektronSayisi: 44, protonSayisi: 44, neutronSayisi: 58, sembol: "Ru", ad: "Ruthenyum" },
+    { atomNumarasi: 45, elektronSayisi: 45, protonSayisi: 45, neutronSayisi: 58, sembol: "Rh", ad: "Rodyum" },
+    { atomNumarasi: 46, elektronSayisi: 46, protonSayisi: 46, neutronSayisi: 60, sembol: "Pd", ad: "Paladyum" },
+    { atomNumarasi: 47, elektronSayisi: 47, protonSayisi: 47, neutronSayisi: 60, sembol: "Ag", ad: "Gümüş" },
+    { atomNumarasi: 48, elektronSayisi: 48, protonSayisi: 48, neutronSayisi: 62, sembol: "Cd", ad: "Kadmiyum" },
+    { atomNumarasi: 49, elektronSayisi: 49, protonSayisi: 49, neutronSayisi: 64, sembol: "In", ad: "Indiyum" },
+    { atomNumarasi: 50, elektronSayisi: 50, protonSayisi: 50, neutronSayisi: 66, sembol: "Sn", ad: "Kalay" }
+];
 
-    // Verilen atom numarasına göre uygun atom bilgisini döndür
-    for (let i = 0; i < atomlar.length; i++) {
-        if (atomlar[i].numara === atomNumarası) {
-            return atomlar[i];
-        }
-    }
+// Başlangıçta gösterilecek atom indeksi
+let suankiAtomIndex = 0;
 
-    // Eğer verilen numara listede yoksa, boş bir nesne döndür
-    return {
-        simbol: '',
-        ad: '',
-        proton: 0,
-        nötron: 0
-    };
-}
-let atomNumarası = 6; // Karbon atom numarası
-
-function atomuGüncelle() {
-    // Atom numarasına uygun proton ve nötron sayısını hesapla
-    let protonSayısı = atomNumarası;
-    let nötronSayısı = atomNumarası;
-
-    // Protonları ve nötronları HTML'e ekle
-    let protonHTML = '';
-    let nötronHTML = '';
-    for (let i = 0; i < protonSayısı; i++) {
-        protonHTML += '<div class="top"></div>';
-    }
-    for (let i = 0; i < nötronSayısı; i++) {
-        nötronHTML += '<div class="bottom"></div>';
-    }
-    document.getElementById('protonlar').innerHTML = protonHTML;
-    document.getElementById('nötronlar').innerHTML = nötronHTML;
-
-    // Elektronları HTML'e ekle
-    let elektronHTML = '';
-    for (let i = 0; i < 6; i++) { // Karbon atomunda 6 elektron
-        let angle = (i / 6) * Math.PI * 2;
-        let x = Math.cos(angle) * 100;
-        let y = Math.sin(angle) * 100;
-        elektronHTML += '<div class="electron" style="top: ' + (50 + y) + 'px; left: ' + (50 + x) + 'px;"></div>';
-    }
-    document.getElementById('elektronlar').innerHTML = elektronHTML;
-
-    // Atomun simbol ve adını güncelle
-    document.getElementById('atom-simbol').innerText = 'C'; // Karbon simbolü
-    document.getElementById('atom-ad').innerText = 'Karbon';
+// Atom modelini güncelle
+function atomModeliniGuncelle() {
+    const suankiAtom = atomBilgileri[suankiAtomIndex];
+    document.getElementById("atomNumber").innerText = suankiAtom.atomNumarasi;
+    document.getElementById("electronNumber").innerText = suankiAtom.elektronSayisi;
+    document.getElementById("protonNumber").innerText = suankiAtom.protonSayisi;
+    document.getElementById("neutronNumber").innerText = suankiAtom.neutronSayisi;
+    document.querySelector(".nucleus").innerText = suankiAtom.sembol;
 }
 
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowUp') {
-        atomNumarası++; // Atom numarasını arttır
-        atomuGüncelle(); // Atomu güncelle
-    } else if (event.key === 'ArrowDown') {
-        atomNumarası = Math.max(1, atomNumarası - 1); // Atom numarasını azalt, en az 1 olmalı
-        atomuGüncelle(); // Atomu güncelle
+// Atom numarasını arttır
+function atomNumarasiniArttir() {
+    if (suankiAtomIndex < atomBilgileri.length - 1) {
+        suankiAtomIndex++;
+        atomModeliniGuncelle();
+    }
+}
+
+// Atom numarasını azalt
+function atomNumarasiniAzalt() {
+    if (suankiAtomIndex > 0) {
+        suankiAtomIndex--;
+        atomModeliniGuncelle();
+    }
+}
+
+// Sayfa yüklendiğinde atom modelini oluştur
+window.onload = function() {
+    atomModeliniGuncelle();
+};
+
+// Klavye olaylarını dinle
+document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowUp") {
+        atomNumarasiniArttir();
+    } else if (event.key === "ArrowDown") {
+        atomNumarasiniAzalt();
     }
 });
-
-// Sayfa yüklendiğinde atomu oluştur
-window.onload = atomuGüncelle;

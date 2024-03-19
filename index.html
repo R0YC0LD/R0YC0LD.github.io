@@ -7,18 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="atom">
-        <div id="atom-simbol">C</div>
-        <div id="atom-ad">Karbon</div>
-        <div id="protonlar">
-            <!-- Protonlar burada dinamik olarak eklenecek -->
+    <div id="atomModel">
+        <div class="atom">
+            <div class="nucleus">C</div>
+            <div class="electronOrbit"></div>
+            <div class="electronOrbit"></div>
+            <!-- Buraya kadar olan kısım 1 elektron için -->
+            <!-- İstenilen sayıda elektron için bu kısmı kopyalayıp yapıştırın -->
         </div>
-        <div id="nötronlar">
-            <!-- Nötronlar burada dinamik olarak eklenecek -->
-        </div>
-        <div id="elektronlar">
-            <!-- Elektronlar burada dinamik olarak eklenecek -->
-        </div>
+    </div>
+    <div id="atomInfo">
+        <h2>Atom Bilgileri</h2>
+        <p><strong>Atom Numarası:</strong> <span id="atomNumber">6</span></p>
+        <p><strong>Elektron Sayısı:</strong> <span id="electronNumber">6</span></p>
+        <p><strong>Proton Sayısı:</strong> <span id="protonNumber">6</span></p>
+        <p><strong>Nötron Sayısı:</strong> <span id="neutronNumber">6</span></p>
     </div>
     <script src="script.js"></script>
 </body>
