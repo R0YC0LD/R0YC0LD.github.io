@@ -1,9 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// CORS ayarları
+app.use(cors());
 
 // Müzik dosyalarını yüklemek için diskStorage kullanma
 const storage = multer.diskStorage({
