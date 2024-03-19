@@ -1,37 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Clone</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Music App</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Spotify Clone</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Ana Sayfa</a></li>
-                    <li><a href="#">Ara</a></li>
-                    <li><a href="#">Kütüphane</a></li>
-                    <li><a href="#">Profil</a></li>
-                    <li><a href="#">Ayarlar</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+      <h1>My Music App</h1>
+    </div>
+    <!-- Arama Çubuğu -->
+    <div class="search-box">
+      <input type="text" placeholder="Search for music..." id="searchInput">
+      <button onclick="search()">Search</button>
+    </div>
+    <!-- Kişiselleştirme Kontrol Paneli -->
+    <div class="personalization-panel">
+      <h2>Personalization Options</h2>
+      <label><input type="checkbox" id="showTrending" onclick="toggleList('trendingList')"> Show Trending</label>
+      <label><input type="checkbox" id="showPopular" onclick="toggleList('popularList')"> Show Popular</label>
+      <label><input type="checkbox" id="showNewReleases" onclick="toggleList('newReleasesList')"> Show New Releases</label>
+    </div>
+    <!-- Giriş ve Kayıt Olma Formları -->
+    <div class="auth-forms">
+      <!-- Giriş Formu -->
+      <form id="loginForm" onsubmit="return loginUser()">
+        <input type="text" placeholder="Username" id="loginUsername" required>
+        <input type="password" placeholder="Password" id="loginPassword" required>
+        <button type="submit">Login</button>
+      </form>
+      <!-- Kayıt Formu -->
+      <form id="registerForm" onsubmit="return registerUser()">
+        <input type="text" placeholder="Username" id="registerUsername" required>
+        <input type="email" placeholder="Email" id="registerEmail" required>
+        <input type="password" placeholder="Password" id="registerPassword" required>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </header>
 
-    <main>
-        <!-- Müzik oynatıcı, albüm gözatma, arama, profil fotoğrafı, en çok dinlenenler gibi bileşenler -->
-    </main>
+  <main>
+    <!-- Müzik Yükleme Formu -->
+    <div class="upload-form">
+      <h2>Upload Music</h2>
+      <form id="uploadForm" enctype="multipart/form-data" onsubmit="return uploadMusic()">
+        <input type="file" name="musicFile" id="musicFile" accept=".mp3" required>
+        <button type="submit">Upload</button>
+      </form>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Spotify Clone</p>
-        </div>
-    </footer>
+    <!-- Müzik Oynatıcı -->
+    <div class="music-player">
+      <audio id="audioPlayer" controls>
+        <source src="" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- Trending Listesi -->
+    <section class="music-list" id="trendingList">
+      <h2>Trending</h2>
+      <div class="card">
+        <!-- Music cards will be dynamically generated here -->
+      </div>
+    </section>
+
+    <!-- Popüler Listesi -->
+    <section class="music-list" id="popularList">
+      <h2>Popüler</h2>
+      <div class="card">
+        <!-- Music cards will be dynamically generated here -->
+      </div>
+    </section>
+
+    <!-- Yeni Çıkanlar Listesi -->
+    <section class="music-list" id="newReleasesList">
+      <h2>Yeni Çıkanlar</h2>
+      <div class="card">
+        <!-- Music cards will be dynamically generated here -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 My Music App</p>
+  </footer>
+
+  <!-- JavaScript ile Arama, Kişiselleştirme, Giriş ve Kayıt Fonksiyonları -->
+  <script>
+    // Arama Fonksiyonu
+    function search() {
+      var input = document.getElementById('searchInput').value;
+      // Arama yapılacak işlemleri burada gerçekleştirin
+      alert('Search query: ' + input);
+    }
+
+    // Kişiselleştirme Fonksiyonu
+    function toggleList(listId) {
+      var list = document.getElementById(listId);
+      list.style.display = document.getElementById('show' + listId.charAt(0).toUpperCase() + listId.slice(1)).checked ? 'block' : 'none';
+    }
+
+    // Giriş Fonksiyonu
+    function loginUser() {
+      var username = document.getElementById('loginUsername').value;
+      var password = document.getElementById('loginPassword').value;
+      // Kullanıcı girişi yapılacak işlemleri burada gerçekleştirin
+      alert('Login with: ' + username + ', ' + password);
+      return false; // Sayfanın yenilenmesini önler
+    }
+
+    // Kayıt Fonksiyonu
+    function registerUser() {
+      var username = document.getElementById('registerUsername').value;
+      var email = document.getElementById('registerEmail').value;
+      var password = document.getElementById('registerPassword').value;
+      // Kullanıcı kaydı yapılacak işlemleri burada gerçekleştirin
+      alert('Register with: ' + username + ', ' + email + ', ' + password);
+      return false; // Sayfanın yenilenmesini önler
+    }
+
+    // Müzik Yükleme Fonksiyonu
+    function uploadMusic() {
+      var formData = new FormData(document.getElementById('uploadForm'));
+
+      fetch('/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to upload music file');
+        }
+        return response.text();
+      })
+      .then(message => {
+        alert(message); // Yükleme başarılı olduğunda kullanıcıya mesaj göster
+      })
+      .catch(error => {
+        console.error('Upload error:', error);
+        alert('Failed to upload music file');
+      });
+
+      return false; // Sayfanın yenilenmesini önler
+    }
+  </script>
 </body>
 </html>
